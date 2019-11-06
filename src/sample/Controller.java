@@ -2,52 +2,84 @@ package sample;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
+import javafx.scene.control.*;
 
 import javafx.event.ActionEvent;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.ObjectOutputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
+import org.json.JSONObject;
+import org.json.JSONException;
 
 public class Controller implements Initializable {
-    public PasswordField pass;
-    public TextField user;
+    public PasswordField password;
+    public TextField account;
     @FXML
-    public Button logup;
+    public Button login;
+    public RadioButton adm;
+    public RadioButton tea;
     @FXML
-    private Button login;
+      ToggleGroup group=new ToggleGroup();
+    @FXML
+    private Button reset;
+     @FXML
+     private RadioButton stu;
+     
 
     @FXML
-    protected  void setLogin(ActionEvent event) throws IOException {
+    protected  void Toggle(ActionEvent event) throws IOException {
 
-        String userText=user.getText();
-        String passText=pass.getText();
-        System.out.println(userText+"  "+passText);
-        if(ClientLogin(userText,passText)==1)
+        String userText=account.getText();
+        String passText=password.getText();
+        String ID=group.getSelectedToggle().getUserData().toString();
+        if(userText.equals("")||passText.equals(""))
         {
-            System.out.println("登录成功");
+            Alert _alert=new Alert(Alert.AlertType.INFORMATION);
+            _alert.setTitle("ERROR");
+            _alert.setHeaderText("错误！");
+            _alert.setContentText("账号或密码不能为空！！");
+            _alert.showAndWait();
+
         }
-        else{
-            System.out.println("用户名或密码错误");
+        else {
+            System.out.println(userText+"  "+passText);
+            System.out.println(ID);
+            if(ClientLogin(userText,passText,ID)==1)
+            {
+                System.out.println("登录成功");
+            }
+            else{
+                System.out.println("用户名或密码错误");
+            }
         }
+
 
 
     }
-    public int ClientLogin(String user,String pass) throws IOException {
+    public int ClientLogin(String user,String pass ,String id) throws IOException {
+
+
         Socket socket=new Socket("127.0.0.1",8888);
         OutputStream os=socket.getOutputStream();
-        os.write((user+" "+pass).getBytes());
-//        OutputStream out=socket.getOutputStream();
-//        ObjectOutputStream oos=new ObjectOutputStream(out);
-//        Password password=new Password(user, pass);
-//        oos.writeObject(password);
+//        os.write(("login#"+id+"#"+user+"#"+pass).getBytes());
+        PrintWriter printWriter=new PrintWriter(os);
+        JSONObject root =new JSONObject();
+        try{
+            root.put("operator","login");
+            root.put("id",id);
+            root.put("account",user);
+            root.put("password",pass);
+
+        }catch (JSONException e){
+            e.printStackTrace();
+        }
+        printWriter.write(root.toString());
+        printWriter.flush();
+        socket.shutdownOutput();
+
+
 
 
         InputStream is=socket.getInputStream();
@@ -58,12 +90,12 @@ public class Controller implements Initializable {
         os.close();
 
         socket.close();
-        if(str2.equals("ok"))
+        if(str2.equals("Failed"))
         {
-            return 1;
+            return 0;
         }
         else{
-            return 0;
+            return 1;
         }
 
     }
@@ -73,4 +105,8 @@ public class Controller implements Initializable {
     }
 
 
+    public void Reset(ActionEvent actionEvent) {
+        password.setText("");
+        account.setText("");
+    }
 }
