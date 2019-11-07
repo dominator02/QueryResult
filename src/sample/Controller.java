@@ -142,12 +142,14 @@ public class Controller implements Initializable {
         printWriter.write(root.toString());
         printWriter.flush();
         socket.shutdownOutput();
-        ObjectInputStream in=new ObjectInputStream(socket.getInputStream());
+        ObjectInputStream in=new ObjectInputStream(new BufferedInputStream(socket.getInputStream()));
         ListTest test=(ListTest)in.readObject();
         List<Results> list =test.getList();
         for(Results results :list){
             System.out.println(results.getName());
 
         }
+        in.close();
+        os.close();
     }
 }
