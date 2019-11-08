@@ -1,10 +1,12 @@
 package sample;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
-import javafx.event.ActionEvent;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 public class ChangePasswordController {
 
@@ -18,6 +20,10 @@ public class ChangePasswordController {
         Result re=new Result();
         Stage stage=new Stage();
         re.start(stage);
+    }
+    public void initialize(URL url, ResourceBundle rb)
+    {
+
     }
 
 }
