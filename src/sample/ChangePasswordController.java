@@ -29,12 +29,25 @@ public class ChangePasswordController {
         Stage stage=new Stage();
         re.start(stage);
     }
-    public void initialize(URL url, ResourceBundle rb)
-    {
+    public void initialize(URL url, ResourceBundle rb)  {
+
 
     }
 
     public void confirmmodify(ActionEvent actionEvent) throws Exception {
+        String op=oldpassword.getText();
+        String np=newpassword.getText();
+        if(op.equals("")||np.equals(""))
+        {
+            alert("ERROR","错误！","密码不能为空！！");
+            oldpassword.setText("");
+            newpassword.setText("");
+        }else {
+            function(op,np);
+        }
+
+    }
+    public void function(String op,String np) throws Exception {
         SocketSingleIntance socketSingleIntance= null;
         try {
             socketSingleIntance = SocketSingleIntance.getSingleIntance();
@@ -49,8 +62,8 @@ public class ChangePasswordController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        String op=oldpassword.getText();
-        String np=newpassword.getText();
+//        String op=oldpassword.getText();
+//        String np=newpassword.getText();
 
         PrintWriter printWriter=new PrintWriter(os);
         JSONObject root =new JSONObject();

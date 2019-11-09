@@ -33,7 +33,7 @@ import org.json.JSONObject;
 
 public class Result extends Application {
     private final ObservableList<Results> data= FXCollections.observableArrayList(
-            new Results(1,"sb",1,1,1)
+
     );
     private final TableView<Results> table=new TableView<>();
     final HBox hBox=new HBox();
@@ -61,6 +61,11 @@ public class Result extends Application {
         tableColumnChinese.setCellValueFactory(new  PropertyValueFactory<>("Chinese"));
         tableColumnMaths.setCellValueFactory(new PropertyValueFactory<>("Math"));
         tableColumnEnglish.setCellValueFactory(new PropertyValueFactory<>("English"));
+        tableColumnId.setMinWidth(50);
+        tableColumnName.setMinWidth(100);
+        tableColumnChinese.setMinWidth(50);
+        tableColumnEnglish.setMinWidth(50);
+        tableColumnMaths.setMinWidth(50);
         loadData();
         table.setItems(data);
         table.getColumns().addAll(tableColumnId,tableColumnName,tableColumnChinese,tableColumnEnglish,tableColumnMaths);
@@ -110,7 +115,7 @@ public class Result extends Application {
         PrintWriter printWriter=new PrintWriter(os);
         JSONObject root =new JSONObject();
         try{
-            root.put("operator","search");
+            root.put("operator","studentsearch");
 //            root.put("id",group.getSelectedToggle().getUserData().toString());
 //            root.put("account",account.getText());
             // root.put("password",pass);
