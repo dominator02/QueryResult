@@ -27,6 +27,7 @@ import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class Manager extends Application {
     private final ObservableList<Results> data= FXCollections.observableArrayList(
@@ -55,7 +56,7 @@ public class Manager extends Application {
         TableColumn tableColumnChinese=new TableColumn("Chinese");
         TableColumn tableColumnMaths=new TableColumn("Maths");
         TableColumn tableColumnEnglish=new TableColumn("English");
-        TableColumn tableColumnDelete=new TableColumn("delete");
+        TableColumn tableColumnDelete=new TableColumn("");
         tableColumnId.setCellValueFactory(new PropertyValueFactory<>("id"));
         tableColumnName.setCellValueFactory(new PropertyValueFactory<>("name"));
         tableColumnChinese.setCellValueFactory(new  PropertyValueFactory<>("Chinese"));
@@ -137,8 +138,17 @@ public class Manager extends Application {
                         Button deleteButton=new Button("删除");
                         this.setGraphic(deleteButton);
                         deleteButton.setOnMouseClicked(mouseEvent -> {
-                            Results results=this.getTableView().getItems().get(this.getIndex());
-                            data.remove(results);
+                            Alert alert=new Alert(Alert.AlertType.CONFIRMATION);
+                            alert.setTitle("DeleteConfirm");
+                            alert.setHeaderText("请确认");
+                            alert.setContentText("您确定要删除此学生信息吗？");
+                            Optional result=alert.showAndWait();
+                            if(result.get()==ButtonType.OK){
+                                Results results=this.getTableView().getItems().get(this.getIndex());
+                                data.remove(results);
+                            }
+
+
                         });
                     }
                 }
