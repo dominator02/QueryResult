@@ -8,6 +8,21 @@ public class Results implements Serializable {
     private int Math;
     private int Chinese;
     private int English;
+
+    public Results(){
+
+    }
+    public Results(int id,String name,int Chinese,int English,int Maths){
+        this.id=id;
+        this.name=name;
+        this.Chinese=Chinese;
+        this.English=English;
+        this.Math=Maths;
+
+    }
+
+
+
     public int getId(){
         return id;
     }

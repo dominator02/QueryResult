@@ -16,15 +16,7 @@ public class ChangePassword extends Application {
         primaryStage.setTitle("修改密码");
         primaryStage.setScene(new Scene(root, 639, 447));
         primaryStage.show();
-        primaryStage.setOnCloseRequest(windowEvent ->{
-            try {
-                SocketSingleIntance socketSingleIntance=SocketSingleIntance.getSingleIntance();
-                socketSingleIntance.Close();
-                System.exit(0);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } );
+
     }
     public static void main(String[] args) {
         launch(args);

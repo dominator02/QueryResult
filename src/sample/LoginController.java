@@ -45,7 +45,8 @@ public class LoginController {
                 else {
                         System.out.println(userText+"  "+passText);
                         System.out.println(ID);
-                        if(ClientLogin(userText,passText,ID)==1)
+                        int resultNum=ClientLogin(userText,passText,ID);
+                        if(resultNum==1)
                         {
                                 //System.out.println("登录成功");
                                 Stage primarystage=(Stage)login.getScene().getWindow();
@@ -53,7 +54,7 @@ public class LoginController {
                                 Result result=new Result();
                                 Stage stage=new Stage();
                                 result.start(stage);
-                        }else if(ClientLogin(userText,passText,ID)==3){
+                        }else if(resultNum==3){
                                 Stage secondstage=(Stage)login.getScene().getWindow();
                                 secondstage.close();
                                 Manager manager=new Manager();
@@ -107,22 +108,22 @@ public class LoginController {
                 }catch (JSONException e){
                         e.printStackTrace();
                 }
-                printWriter.write(root.toString());
+                printWriter.println(root.toString());
                 printWriter.flush();
-                socket.shutdownOutput();
+                //socket.shutdownOutput();
 
                 InputStream is=socket.getInputStream();
 
                 String statue="";
                 BufferedReader bufferedReader=new BufferedReader(new InputStreamReader(is));
-                String lineMessage;
-                while ((lineMessage=bufferedReader.readLine())!=null)
-                {
-                        statue+=lineMessage;
-                }
-
-                is.close();
-                os.close();
+                String lineMessage=bufferedReader.readLine();
+//                while ((lineMessage=bufferedReader.readLine())!=null)
+//                {
+//                        statue+=lineMessage;
+//                }
+                statue=lineMessage;
+//                is.close();
+//                os.close();
 
                 //socket.close();
                 if(statue.equals("Failed"))

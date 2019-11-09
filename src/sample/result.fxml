@@ -1,18 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.AnchorPane?>
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ResultController">
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="481.0" prefWidth="654.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ResultController">
    <children>
-      <TableView fx:id="gradesresult" layoutX="29.0" layoutY="65.0" prefHeight="267.0" prefWidth="545.0">
+      <TableView fx:id="gradesresult" layoutX="29.0" layoutY="65.0" prefHeight="336.0" prefWidth="603.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
-            <TableColumn prefWidth="77.0" text="Column X" />
+          <TableColumn fx:id="id" prefWidth="75.0" text="Id" />
+          <TableColumn fx:id="name" prefWidth="75.0" text="Name" />
+            <TableColumn fx:id="Chinese" prefWidth="100.0" text="Chinese" />
+            <TableColumn fx:id="Maths" prefWidth="95.0" text="Maths" />
+            <TableColumn fx:id="English" prefWidth="97.0" text="English" />
         </columns>
       </TableView>
-      <Label fx:id="lable" layoutX="29.0" layoutY="27.0" text="你的成绩情况如下：" />
-      <Button fx:id="modify" layoutX="95.0" layoutY="344.0" mnemonicParsing="false" onAction="#modify" text="修改密码" />
-      <Button fx:id="out" layoutX="401.0" layoutY="344.0" mnemonicParsing="false" onAction="#out" text="退出登录" />
+      <Label layoutX="29.0" layoutY="27.0" text="你的成绩情况如下：" />
+      <Button fx:id="modify" layoutX="419.0" layoutY="424.0" mnemonicParsing="false" onAction="#modify" text="修改密码" />
+      <Button fx:id="out" layoutX="526.0" layoutY="424.0" mnemonicParsing="false" onAction="#out" text="退出登录" />
    </children>
 </AnchorPane>

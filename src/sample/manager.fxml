@@ -1,18 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.AnchorPane?>
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ManagerController">
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="520.0" prefWidth="671.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ManagerController">
    <children>
-      <TableView fx:id="managecontent" layoutX="14.0" layoutY="50.0" prefHeight="277.0" prefWidth="572.0">
+      <TableView fx:id="managecontent" layoutX="10.0" layoutY="95.0" prefHeight="261.0" prefWidth="653.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
+          <TableColumn fx:id="mColumnSelect" prefWidth="91.0" text="Selected" />
+          <TableColumn fx:id="idcolumn" prefWidth="77.0" text="Id" />
+            <TableColumn fx:id="namecolumn" prefWidth="107.0" text="Name" />
+            <TableColumn fx:id="Chinesecolumn" prefWidth="94.0" text="Chinese" />
+            <TableColumn fx:id="Mathscolumn" prefWidth="96.0" text="Maths" />
+            <TableColumn fx:id="Englishcolumn" prefWidth="105.0" text="English" />
         </columns>
       </TableView>
-      <Button fx:id="add" layoutX="68.0" layoutY="350.0" mnemonicParsing="false" text="增加记录" />
-      <Button fx:id="delete" layoutX="245.0" layoutY="350.0" mnemonicParsing="false" text="删除记录" />
-      <Button fx:id="change" layoutX="433.0" layoutY="350.0" mnemonicParsing="false" text="修改记录" />
+      <Button fx:id="add" layoutX="531.0" layoutY="391.0" mnemonicParsing="false" onAction="#add" text="Add" />
+      <Button fx:id="modify" layoutX="454.0" layoutY="472.0" mnemonicParsing="false" onAction="#modify" text="修改密码" />
+      <Button fx:id="back" layoutX="561.0" layoutY="472.0" mnemonicParsing="false" onAction="#back" text="退出登录" />
       <Label layoutX="14.0" layoutY="14.0" text="你好，管理员！" />
+      <TextField fx:id="id" layoutX="14.0" layoutY="391.0" prefHeight="36.0" prefWidth="70.0" promptText="Id" />
+      <TextField fx:id="name" layoutX="94.0" layoutY="391.0" prefHeight="36.0" prefWidth="89.0" promptText="Name" />
+      <TextField fx:id="Chinese" layoutX="189.0" layoutY="391.0" prefHeight="36.0" prefWidth="96.0" promptText="Chinese" />
+      <TextField fx:id="Maths" layoutX="296.0" layoutY="391.0" prefHeight="36.0" prefWidth="80.0" promptText="Maths" />
+      <TextField fx:id="English" layoutX="384.0" layoutY="391.0" prefHeight="36.0" prefWidth="89.0" promptText="English" />
+      <Button fx:id="delete" layoutX="14.0" layoutY="50.0" mnemonicParsing="false" onAction="#delete" text="Delete" />
    </children>
 </AnchorPane>
